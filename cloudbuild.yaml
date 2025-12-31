@@ -1,0 +1,10 @@
+substitutions:
+  _ENV: dev
+
+steps:
+- name: gcr.io/cloud-builders/gcloud
+  entrypoint: bash
+  args:
+    - -c
+    - |
+      echo "Deploying to environment: ${_ENV}"
