@@ -1,13 +1,9 @@
-substitutions:
-  _ENV: DEV
-
 steps:
 - name: gcr.io/cloud-builders/gcloud
-  entrypoint: bash
   args:
-    - -c
-    - |
-      echo "Deploying to environment: ${_ENV}"
+    - projects
+    - list
+
 
 options:
   logging: CLOUD_LOGGING_ONLY
