@@ -1,8 +1,23 @@
+substitutions:
+  _REGION: us-central1
+  _REPO: my-docker-repo
+  _IMAGE: demo-image
+
 steps:
-- name: gcr.io/cloud-builders/gcloud
+# Build Docker image
+- name: gcr.io/cloud-builders/docker
   args:
-    - projects
-    - list
+    - build
+    - -t
+    - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_IMAGE}:$SHORT_SHA
+    - .
+
+# Push Docker image
+- name: gcr.io/cloud-builders/docker
+  args:
+    - push
+    - ${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO}/${_IMAGE}:$SHORT_SHA
+
 
 
 options:
